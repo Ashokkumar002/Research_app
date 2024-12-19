@@ -75,14 +75,12 @@ const Home = () => {
             Get personalized recommendations for journals that best match your
             research.
           </p>
-          <Link to="/find-journal">Learn More</Link>
         </div>
         <div style={cardStyle}>
           <h3>Publish with Us</h3>
           <p>
             Submit your work for publication in top-tier journals in your field.
           </p>
-          <Link to="/publish">Learn More</Link>
         </div>
         <div style={cardStyle}>
           <h3>Track Your Research</h3>
@@ -90,7 +88,6 @@ const Home = () => {
             Monitor your submission status and get updates on your research
             progress.
           </p>
-          <Link to="/track">Learn More</Link>
         </div>
       </section>
 
