@@ -1,0 +1,122 @@
+.home-container {
+  font-family: 'Tilt Warp', sans-serif;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home-title {
+  color: #0056d2;
+}
+
+.home-search {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  width: 300px;
+  margin-right: 20px;
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome-section {
+  margin-top: 30px;
+}
+
+.learning-container {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.learning-content {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.learning-card {
+  background: #000;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  position: relative;
+}
+
+.learning-image {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.learning-details {
+  margin-top: 10px;
+}
+
+.progress-bar {
+  height: 5px;
+  background-color: #eee;
+  border-radius: 5px;
+  margin-top: 8px;
+  position: relative;
+}
+
+.progress {
+  height: 100%;
+  width: 4%;
+  background-color: #4caf50;
+  border-radius: 5px;
+}
+
+.progress-text {
+  margin-top: 5px;
+}
+
+.weekly-challenge {
+  flex: 0.5;
+  text-align: center;
+}
+
+.stats-section {
+  margin-top: 20px;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  flex: 1;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 10px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 24px;
+  color: #4caf50;
+}

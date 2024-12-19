@@ -1,0 +1,105 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import NavBar from "../../components/NavBar/NavBar";
+
+const Home = () => {
+  const containerStyle = {
+    fontFamily: "Arial, sans-serif",
+    color: "#333",
+    backgroundColor: "#f8f9fa",
+  };
+
+  const heroStyle = {
+    textAlign: "center",
+    backgroundImage:
+      "url('https://source.unsplash.com/1600x900/?journal,research')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    color: "#fff",
+    padding: "100px 20px",
+  };
+
+  const heroTextStyle = {
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    padding: "20px",
+    borderRadius: "10px",
+    display: "inline-block",
+  };
+
+  const cardContainerStyle = {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gap: "20px",
+    padding: "40px 20px",
+  };
+
+  const cardStyle = {
+    backgroundColor: "#fff",
+    border: "1px solid #ddd",
+    borderRadius: "10px",
+    padding: "20px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+    textAlign: "center",
+  };
+
+  const footerStyle = {
+    backgroundColor: "#333",
+    color: "#fff",
+    textAlign: "center",
+    padding: "20px 0",
+    marginTop: "20px",
+  };
+
+  return (
+    <div style={containerStyle}>
+      {/* Header */}
+      <NavBar />
+
+      {/* Hero Section */}
+      <section style={heroStyle}>
+        <div style={heroTextStyle}>
+          <h2 style={{ fontSize: "2.5rem", marginBottom: "10px" }}>
+            Welcome to Journal Finder
+          </h2>
+          <p style={{ fontSize: "1.2rem" }}>
+            Discover, publish, and track your research with ease.
+          </p>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section style={cardContainerStyle}>
+        <div style={cardStyle}>
+          <h3>Find a Journal</h3>
+          <p>
+            Get personalized recommendations for journals that best match your
+            research.
+          </p>
+          <Link to="/find-journal">Learn More</Link>
+        </div>
+        <div style={cardStyle}>
+          <h3>Publish with Us</h3>
+          <p>
+            Submit your work for publication in top-tier journals in your field.
+          </p>
+          <Link to="/publish">Learn More</Link>
+        </div>
+        <div style={cardStyle}>
+          <h3>Track Your Research</h3>
+          <p>
+            Monitor your submission status and get updates on your research
+            progress.
+          </p>
+          <Link to="/track">Learn More</Link>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer style={footerStyle}>
+        <p>© 2024 Journal Finder. All Rights Reserved.</p>
+      </footer>
+    </div>
+  );
+};
+
+export default Home;
