@@ -1,0 +1,57 @@
+.publish-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  .publish-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .publish-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .publish-form label {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .publish-form input,
+  .publish-form textarea {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+  }
+  
+  .publish-form textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .publish-form .submit-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .publish-form .submit-button:hover {
+    background-color: #0056b3;
+  }
+
+  . 

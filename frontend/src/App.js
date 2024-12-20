@@ -5,6 +5,7 @@ import Home from "./Pages/Home/Home";
 import SignInForm from "./Pages/Signin/SignInForm";
 import SignupForm from "./Pages/Signup/SignupForm";
 import Track from "./Pages/Track/Track";
+import Publish from "./Pages/Publish/Publish";
 
 const App = () => {
   return (
@@ -12,7 +13,8 @@ const App = () => {
       <Route path="/" element={<Home />} />
       <Route path="/sign-in" element={<SignInForm />} />
       <Route path="/sign-up" element={<SignupForm />} />
-      <Route path="/track-goals" element={<Track />} />
+      <Route path="/track" element={<Track />} />
+      <Route path="/publish" element={<Publish />} />
     </Routes>
   );
 };

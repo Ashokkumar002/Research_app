@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
+import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   const containerStyle = {
@@ -42,15 +43,10 @@ const Home = () => {
     textAlign: "center",
   };
 
-  const footerStyle = {
-    backgroundColor: "#333",
-    color: "#fff",
-    textAlign: "center",
-    padding: "20px 0",
-    marginTop: "20px",
-  };
+  
 
   return (
+    <div>
     <div style={containerStyle}>
       {/* Header */}
       <NavBar />
@@ -90,11 +86,8 @@ const Home = () => {
           </p>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer style={footerStyle}>
-        <p>© 2024 Journal Finder. All Rights Reserved.</p>
-      </footer>
+    </div>
+    <Footer/>
     </div>
   );
 };
