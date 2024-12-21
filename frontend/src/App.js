@@ -6,6 +6,7 @@ import SignInForm from "./Pages/Signin/SignInForm";
 import SignupForm from "./Pages/Signup/SignupForm";
 import Track from "./Pages/Track/Track";
 import Publish from "./Pages/Publish/Publish";
+import FindJournal from "./Pages/FindJournal/FindJournal";
 
 const App = () => {
   return (
@@ -15,6 +16,10 @@ const App = () => {
       <Route path="/sign-up" element={<SignupForm />} />
       <Route path="/track" element={<Track />} />
       <Route path="/publish" element={<Publish />} />
+      <Route path="/find-journal" element={<FindJournal />} />
+      <Route path="/SignInForm" element={<SignInForm />} />
+      <Route path="/SignupForm" element={<SignupForm />} />
+
     </Routes>
   );
 };

@@ -1,80 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import "./NavBar.css"; // Import the CSS file
 
 const NavBar = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const headerStyle = {
-    backgroundColor: "#004b87",
-    color: "#fff",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "10px 20px",
-  };
-
-  const navLinksStyle = {
-    display: "flex",
-    gap: "20px",
-  };
-
-  const navLinkStyle = {
-    color: "#fff",
-    textDecoration: "none",
-    fontSize: "1rem",
-    fontWeight: "bold",
-    transition: "color 0.3s",
-  };
-
-  const searchBarStyle = {
-    display: "flex",
-    alignItems: "center",
-    gap: "10px",
-    marginLeft: "auto",
-  };
-
   return (
-    <header style={headerStyle}>
-      <h1>Journal Finder</h1>
-      <nav style={navLinksStyle}>
-        <Link to="/find-journal" style={navLinkStyle}>
+    <header className="navbar-header">
+      <h1 className="navbar-title">Journal Finder</h1>
+      <nav className="navbar-links">
+        <Link to="/find-journal" className="navbar-link">
           Find a Journal
         </Link>
-        <Link to="/publish" style={navLinkStyle}>
+        <Link to="/publish" className="navbar-link">
           Publish with Us
         </Link>
-        <Link to="/track" style={navLinkStyle}>
+        <Link to="/track" className="navbar-link">
           Track Your Research
         </Link>
       </nav>
-      <div style={searchBarStyle}>
-        <input
-          type="text"
-          placeholder="Search journals..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          style={{
-            padding: "5px 10px",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
-          }}
-        />
-        <button
-          style={{
-            padding: "5px 10px",
-            backgroundColor: "#ffa500",
-            color: "#fff",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-          onClick={() => alert(`Searching for: ${searchQuery}`)}
-        >
-          Search
-        </button>
+      <div className="navbar-buttons">
+        <Link to="/SignInForm" className="navbar-button">
+          Sign In
+        </Link>
+        <Link to="/SignupForm" className="navbar-button navbar-button-signup">
+          Sign Up
+        </Link>
       </div>
     </header>
   );
 };
 
 export default NavBar;
+

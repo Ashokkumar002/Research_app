@@ -1,7 +1,9 @@
 import React from 'react';
 import './SignupForm.css';
+import { useNavigate } from 'react-router-dom';
 
 const SignupForm = () => {
+  const navigate = useNavigate();
   return (
     <div className="signup-container">
       <div className="background"></div>
@@ -24,8 +26,20 @@ const SignupForm = () => {
               type="email"
               id="email"
               name="email"
-              placeholder="gmail.com"
+              placeholder="example@gmail.com"
               required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="mobile">Mobile Number</label>
+            <input
+              type="text"
+              id="mobile"
+              name="mobile"
+              placeholder="1234567890"
+              maxLength="15" // Limit the maximum length
+              pattern="[0-9]+" // Allow only numeric values
+              title="Please enter a valid mobile number with digits only"required
             />
           </div>
           <div className="form-group">
@@ -54,7 +68,9 @@ const SignupForm = () => {
           </button>
         </form>
       </div>
-      <button className="sign-in-button">Sign In</button>
+      <button className="sign-in-button" onClick={() => navigate('/signin')}>
+        Sign In
+      </button>
     </div>
   );
 };

@@ -1,0 +1,66 @@
+/* Navbar Styles */
+.navbar-header {
+    background-color: #004b87;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .navbar-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffa500;
+  }
+  
+  .navbar-links {
+    display: flex;
+    gap: 30px;
+  }
+  
+  .navbar-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .navbar-link:hover {
+    color: #ffa500;
+  }
+  
+  .navbar-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .navbar-button {
+    padding: 5px 15px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .navbar-button:hover {
+    background-color: #ffa500;
+    color: #fff;
+  }
+  
+  .navbar-button-signup {
+    background-color: #ffa500;
+    border-color: #ffa500;
+  }
+  
+  .navbar-button-signup:hover {
+    background-color: #fff;
+    color: #ffa500;
+  }
+  
