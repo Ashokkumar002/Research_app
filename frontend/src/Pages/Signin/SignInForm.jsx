@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SignInForm.css';
 
 const SignInForm = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="signin-container">
       <div className="background"></div>
@@ -41,10 +44,19 @@ const SignInForm = () => {
             Proceed
           </button>
         </form>
+        <p className="signup-prompt">
+          Don't have an account?{' '}
+          <a href='/SignUpForm'
+            className="signup-link"
+            
+          >
+            Sign up
+          </a>
+        </p>
       </div>
-      <button className="signup-button">Sign Up</button>
     </div>
   );
 };
 
 export default SignInForm;
+

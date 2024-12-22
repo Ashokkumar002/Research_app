@@ -68,7 +68,7 @@ const SignupForm = () => {
           </button>
         </form>
       </div>
-      <button className="sign-in-button" onClick={() => navigate('/signin')}>
+      <button className="sign-in-button" onClick={() => navigate('/signInForm')}>
         Sign In
       </button>
     </div>

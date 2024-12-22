@@ -7,6 +7,9 @@ const NavBar = () => {
     <header className="navbar-header">
       <h1 className="navbar-title">Journal Finder</h1>
       <nav className="navbar-links">
+      <Link to="/" className="navbar-link">
+          Home
+        </Link>
         <Link to="/find-journal" className="navbar-link">
           Find a Journal
         </Link>
@@ -20,9 +23,6 @@ const NavBar = () => {
       <div className="navbar-buttons">
         <Link to="/SignInForm" className="navbar-button">
           Sign In
-        </Link>
-        <Link to="/SignupForm" className="navbar-button navbar-button-signup">
-          Sign Up
         </Link>
       </div>
     </header>
