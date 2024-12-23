@@ -9,6 +9,24 @@
     z-index: -1;
   }
   
+   /* Position the Back button at the top left corner */
+.back-button {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  padding: 10px 20px;
+  background-color: #cccccc;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  z-index: 10; /* Ensure it's above other elements */
+}
+
+.back-button:hover {
+  background-color: #bbbbbb;
+}
   /* Container for the Form */
   .signin-container {
     display: flex;
@@ -122,4 +140,10 @@
   .signup-button:hover {
     background-color: #f4f4f4;
   }
+
+ 
+
+
+
+  
   

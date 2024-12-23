@@ -8,6 +8,15 @@ const SignInForm = () => {
   return (
     <div className="signin-container">
       <div className="background"></div>
+
+      {/* Back Button */}
+      <button
+        className="back-button"
+        onClick={() => navigate(-1)} // Go back to the previous page
+      >
+        &larr; Back
+      </button>
+
       <div className="form-container">
         <h1 className="form-title">Sign in</h1>
         <form>
@@ -46,10 +55,7 @@ const SignInForm = () => {
         </form>
         <p className="signup-prompt">
           Don't have an account?{' '}
-          <a href='/SignUpForm'
-            className="signup-link"
-            
-          >
+          <a href="/SignUpForm" className="signup-link">
             Sign up
           </a>
         </p>
@@ -59,4 +65,6 @@ const SignInForm = () => {
 };
 
 export default SignInForm;
+
+
 
