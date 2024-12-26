@@ -1,0 +1,89 @@
+[
+  {
+    "title": "test 1",
+    "authors": [
+      "yogan"
+    ],
+    "journalName": "sample test 1",
+    "abstract": "sample test abstract 1",
+    "filePath": "uploads\\1735198994980-Airquality-EDA.pdf"
+  },
+  {
+    "title": "sample test 2",
+    "authors": [
+      "yogan"
+    ],
+    "journalName": "sample test 2",
+    "abstract": "sample test 2",
+    "filePath": "uploads\\1735199151191-Yogannasamy N_Resume.docx"
+  },
+  {
+    "title": "sample test 3",
+    "authors": [
+      "sample author"
+    ],
+    "journalName": "sample test 3",
+    "abstract": "sample abstract 3",
+    "filePath": "uploads\\1735200218151-Fees Receipt.pdf"
+  },
+  {
+    "title": "sample test 4",
+    "authors": [
+      "sample author 1"
+    ],
+    "journalName": "sample test 4",
+    "abstract": "sample abstract",
+    "filePath": "uploads\\1735200676055-android 1.pdf",
+    "status": "pending"
+  },
+  {
+    "title": "sample test 5",
+    "authors": [
+      "sample author"
+    ],
+    "journalName": "sample test 5",
+    "abstract": "gahajskjx",
+    "filePath": "uploads\\1735200812953-android 1.pdf",
+    "status": "pending"
+  },
+  {
+    "title": "sample test 6",
+    "authors": [
+      "sample author"
+    ],
+    "journalName": "sample test 6",
+    "abstract": "hhjjsfshds",
+    "filePath": "uploads\\1735200875358-android Record.pdf",
+    "status": "pending"
+  },
+  {
+    "title": "sample test 6",
+    "authors": [
+      "sample author"
+    ],
+    "journalName": "sample test 6",
+    "abstract": "gahstys",
+    "filePath": "uploads\\1735200995722-android.pdf",
+    "status": "pending"
+  },
+  {
+    "title": "sample test 7",
+    "authors": [
+      "sample author"
+    ],
+    "journalName": "sample test 7",
+    "abstract": "sample abstract to submit",
+    "filePath": "uploads\\1735201235140-BC-1.pdf",
+    "status": "pending"
+  },
+  {
+    "title": "sample test 7",
+    "authors": [
+      "sample author"
+    ],
+    "journalName": "sample test 7",
+    "abstract": "sample abstartct",
+    "filePath": "uploads\\1735201490580-BC-2.pdf",
+    "status": "pending"
+  }
+]
