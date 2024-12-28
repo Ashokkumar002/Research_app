@@ -7,6 +7,7 @@ import SignupForm from "./Pages/Signup/SignupForm";
 import Track from "./Pages/Track/Track";
 import Publish from "./Pages/Publish/Publish";
 import FindJournal from "./Pages/FindJournal/FindJournal";
+import AdminDashboard from "./Pages/admindashbord/AdminDashboard";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
       <Route path="/find-journal" element={<FindJournal />} />
       <Route path="/SignInForm" element={<SignInForm />} />
       <Route path="/SignupForm" element={<SignupForm />} />
+      <Route path="/AdminDashboard" element={<AdminDashboard />} />
 
     </Routes>
   );

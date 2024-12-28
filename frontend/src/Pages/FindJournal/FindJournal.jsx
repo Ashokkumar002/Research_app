@@ -148,7 +148,6 @@ const FindJournal = () => {
 
 
       </div>
-      <Footer />
     </div>
   );
 };

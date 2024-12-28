@@ -62,7 +62,6 @@ const Track = () => {
       </div>
     </div>
     </div>
-    <Footer/>
     </div>
   );
 };

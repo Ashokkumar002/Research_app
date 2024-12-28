@@ -85,5 +85,46 @@
     "abstract": "sample abstartct",
     "filePath": "uploads\\1735201490580-BC-2.pdf",
     "status": "pending"
+  },
+  {
+    "title": "sample test 8",
+    "authors": [
+      "jofin"
+    ],
+    "journalName": "sample test 8",
+    "abstract": "sample abstract",
+    "filePath": "uploads\\1735278824121-android.pdf",
+    "status": "pending"
+  },
+  {
+    "title": "sample test 9",
+    "authors": [
+      "jofin"
+    ],
+    "journalName": "sample test 9",
+    "abstract": "sample abstarct test",
+    "filePath": "uploads\\1735284050141-android 1.pdf",
+    "status": "pending"
+  },
+  {
+    "title": "sample test 10",
+    "authors": [
+      "sample author"
+    ],
+    "journalName": "sample journal",
+    "abstract": "sample abstarct",
+    "filePath": "uploads\\1735287022080-BC-1.pdf",
+    "status": "pending"
+  },
+  {
+    "_id": "c0b6f04a-dee7-4e13-be39-7cc60f813510",
+    "title": "sample 11",
+    "authors": [
+      "karan"
+    ],
+    "journalName": "karan journal",
+    "abstract": "sample",
+    "filePath": "uploads\\1735294381180-android Record.pdf",
+    "status": "pending"
   }
 ]
