@@ -19,7 +19,9 @@ exports.searchJournals = async (req, res) => {
       abstract: item.abstract || "No Abstract",
       doi: item.DOI,
       authors: item.author
-        ? item.author.map((author) => `${author.given} ${author.family}`).join(", ")
+        ? item.author
+            .map((author) => `${author.given} ${author.family}`)
+            .join(", ")
         : "No Authors",
       link: item.URL,
     }));
