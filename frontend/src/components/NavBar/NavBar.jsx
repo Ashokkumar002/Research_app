@@ -19,6 +19,9 @@ const NavBar = () => {
         <Link to="/track" className="navbar-link">
           Track Your Research
         </Link>
+        <Link to="/AdminDashboard" className="navbar-link">
+          Admin
+        </Link>
       </nav>
       <div className="navbar-buttons">
         <Link to="/SignInForm" className="navbar-button">
