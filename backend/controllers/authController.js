@@ -10,50 +10,56 @@ console.log("JWT_SECRET", JWT_SECRET);
 
 // User registration
 exports.createUser = async (req, res) => {
-  const { id, name, email, password, mobile_no } = req.body;
+  const { username, email, mobile_no, password } = req.body;
 
-  if (!id || !name || !email || !password || !mobile_no) {
+  if (!username || !email || !mobile_no || !password) {
     return res.status(400).json({ message: "All fields are required" });
   }
 
   try {
     const db = await connectDB();
 
-    // Ensure unique email and mobile_no
-    await db
+    // Check if the email is already registered
+    const existingUser = await db
       .collection(COLLECTION_NAME)
-      .createIndex({ email: 1 }, { unique: true });
-    await db
+      .findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "Email is already registered" });
+    }
+
+    // Determine the next user ID
+    const lastUser = await db
       .collection(COLLECTION_NAME)
-      .createIndex({ mobile_no: 1 }, { unique: true });
+      .find()
+      .sort({ _id: -1 }) // Sort in descending order by _id
+      .limit(1)
+      .toArray();
+
+    const nextUserId = lastUser.length > 0 ? lastUser[0]._id + 1 : 10000;
 
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const userData = {
-      _id: id,
-      name,
+    // Create a new user
+    const newUser = {
+      _id: nextUserId,
+      username,
       email,
-      password: hashedPassword,
       mobile_no,
+      password: hashedPassword,
+      role: "user", // Default role
       status: "active", // Default status
+      createdAt: new Date(),
     };
 
-    // Insert user data
-    await db.collection(COLLECTION_NAME).insertOne(userData);
+    await db.collection(COLLECTION_NAME).insertOne(newUser);
 
-    res.status(201).json({ message: "User created successfully!" });
-  } catch (error) {
-    if (error.code === 11000) {
-      const field = Object.keys(error.keyValue)[0];
-      return res.status(409).json({
-        message: `Duplicate value for ${field}: ${error.keyValue[field]}`,
-      });
-    }
-    console.error("Error creating user:", error);
     res
-      .status(500)
-      .json({ message: "Internal server error. error: " + error.message });
+      .status(201)
+      .json({ message: "User registered successfully", userId: nextUserId });
+  } catch (error) {
+    console.error("Error during registration:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
@@ -70,6 +76,7 @@ exports.login = async (req, res) => {
   try {
     const db = await connectDB();
 
+    // Find the user by email or mobile number
     const user = await db.collection(COLLECTION_NAME).findOne({
       $or: [{ email: credential }, { mobile_no: credential }],
     });
@@ -78,16 +85,32 @@ exports.login = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
+    // Validate password
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Invalid password" });
     }
 
+    // Generate JWT token
     const token = jwt.sign({ id: user._id, email: user.email }, JWT_SECRET, {
       expiresIn: "1h",
     });
 
-    res.status(200).json({ message: "Login successful", token });
+    // Respond with token and user data
+    const userResponse = {
+      id: user._id,
+      email: user.email,
+      username: user.username,
+      mobile_no: user.mobile_no,
+      role: user.role,
+      profileImage: user.profileImage, // Add other user fields as necessary
+    };
+
+    res.status(200).json({
+      message: "Login successful",
+      token,
+      user: userResponse, // Send user data in response
+    });
   } catch (error) {
     console.error("Error during login:", error);
     res.status(500).json({ message: "Internal server error" });

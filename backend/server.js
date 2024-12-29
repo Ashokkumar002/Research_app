@@ -7,9 +7,6 @@ const { v4: uuidv4 } = require("uuid"); // To generate unique IDs
 require("dotenv").config();
 const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
-// const journalRoutes = require("./routes/journalRoutes");
-// const abstractRoutes = require("./routes/abstractRoutes");
-// const submissionRoutes = require("./routes/submissionRoutes");
 
 const app = express();
 
@@ -19,9 +16,6 @@ app.use(cors());
 
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
-// app.use("/api/journals", journalRoutes);
-// app.use("/api/abstracts", abstractRoutes);
-// app.use("/api/submissions", submissionRoutes);
 
 // Ensure the 'uploads' directory exists for file storage
 const uploadDir = path.join(__dirname, "uploads");
@@ -109,7 +103,9 @@ app.get("/api/admin/publications", (req, res) => {
   }
 
   const publications = JSON.parse(fs.readFileSync(publicationsFilePath));
-  const pendingPublications = publications.filter((pub) => pub.status === "pending"); // Only 'pending' journals
+  const pendingPublications = publications.filter(
+    (pub) => pub.status === "pending"
+  ); // Only 'pending' journals
 
   return res.status(200).json(pendingPublications);
 });
@@ -120,7 +116,9 @@ app.put("/api/admin/publications/:id", (req, res) => {
   const { status } = req.body; // 'approved' or 'rejected'
 
   if (status !== "approved" && status !== "rejected") {
-    return res.status(400).json({ message: 'Invalid status. Must be "approved" or "rejected".' });
+    return res
+      .status(400)
+      .json({ message: 'Invalid status. Must be "approved" or "rejected".' });
   }
 
   const publications = JSON.parse(fs.readFileSync(publicationsFilePath));
@@ -145,8 +143,3 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
-
-
-
-

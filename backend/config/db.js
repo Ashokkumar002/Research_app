@@ -1,6 +1,5 @@
-/// config/db.js
-const { MongoClient } = require("mongodb");
-
+// config/db.js
+const mongoose = require("mongoose");
 const URI =
   "mongodb+srv://" +
   process.env.MONGODB_UP +
@@ -12,12 +11,11 @@ const connectDB = async () => {
   if (dbInstance) return dbInstance;
 
   try {
-    const client = new MongoClient(URI, {
+    await mongoose.connect(URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    await client.connect();
-    dbInstance = client.db();
+    dbInstance = mongoose.connection;
     console.log("Connected to MongoDB");
     return dbInstance;
   } catch (error) {
