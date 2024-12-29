@@ -1,142 +1,94 @@
-/* General Container Styling */
 .track-container {
-    max-width: 1000px;
-    margin: 50px auto;
-    padding: 30px;
-    font-family: 'Roboto', sans-serif;
-    color: #333;
-    background: #f0f7ff;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  }
-  
-  .user-info {
-    background-color: #1565c0;
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  .user-info h3 {
-    font-size: 24px;
-    margin: 0;
-  }
-  
-  .user-info p {
-    font-size: 16px;
-    margin: 5px 0;
-  }
-  
-  /* Header Styles */
-  .track-container h2 {
-    text-align: center;
-    font-size: 32px;
-    margin-bottom: 30px;
-    font-weight: 600;
-    color: #1565c0;
-    text-transform: uppercase;
-    position: relative;
-    letter-spacing: 2px;
-  }
-  
-  /* Underline effect for header */
-  .track-container h2::after {
-    content: '';
-    width: 80px;
-    height: 3px;
-    background-color: #1565c0;
-    position: absolute;
-    left: 50%;
-    bottom: -12px;
-    transform: translateX(-50%);
-    border-radius: 4px;
-  }
-  
-  /* Card Layout Styling */
-  .track-card {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-  
-  .journal-card {
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-    padding: 20px;
-    position: relative;
-  }
-  
-  .journal-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Header and Status Styling within Cards */
-  .journal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-  }
-  
-  .journal-header h3 {
-    font-size: 20px;
-    color: #333;
-    margin: 0;
-  }
-  
-  .status {
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: capitalize;
-    transition: background 0.3s ease, color 0.3s ease;
-  }
-  
-  .status.submitted {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-  }
-  
-  .status.on-progress {
-    background-color: #fff3e0;
-    color: #ff8f00;
-  }
-  
-  .status.returned {
-    background-color: #fce4ec;
-    color: #d32f2f;
-  }
-  
-  /* Journal Body and Remarks Styling */
-  .journal-body p {
-    font-size: 16px;
-    color: #555;
-    margin: 0;
-  }
-  
-  .journal-body strong {
-    color: #333;
-  }
-  
-  /* Responsive Design for Mobile */
-  @media (max-width: 768px) {
-    .track-container {
-      padding: 20px;
-    }
-  
-    .track-card {
-      padding: 15px;
-    }
-  
-    .journal-header h3 {
-      font-size: 18px;
-    }
-  }
-  
+  padding: 20px;
+  background-color: #f7f9fc;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 32px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.error {
+  color: red;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.no-journals {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+}
+
+.journal-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.journal-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 280px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.journal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.journal-card h3 {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.journal-card p {
+  font-size: 16px;
+  color: #777;
+}
+
+.status {
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.status.pending {
+  background-color: #f39c12;
+  color: white;
+}
+
+.status.approved {
+  background-color: #27ae60;
+  color: white;
+}
+
+.status.rejected {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.feedback {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #e74c3c;
+  font-weight: bold;
+}
