@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client"; // Import from "react-dom/client" for R
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import UserProvider from "./context/userContext"; // Import UserProvider for user authentication context
 
 // Get the root element
 const rootElement = document.getElementById("root");
@@ -13,9 +14,11 @@ const root = ReactDOM.createRoot(rootElement);
 // Render the application
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <UserProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </UserProvider>
   </React.StrictMode>
 );
 

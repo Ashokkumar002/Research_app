@@ -11,7 +11,11 @@ const journalSchema = new mongoose.Schema({
   journalName: { type: String, required: true },
   abstract: { type: String, required: true },
   filePath: { type: String, required: true }, // File path in the uploads directory
-  status: { type: String, enum: ["pending", "approved", "rejected"], default: "pending" },
+  status: {
+    type: String,
+    enum: ["pending", "approved", "rejected"],
+    default: "pending",
+  },
   createdAt: { type: Date, default: Date.now },
 });
 
@@ -43,7 +47,9 @@ const addJournal = (journalData) => {
 // Approve or reject a journal by filePath
 const updateJournalStatus = (filePath, status) => {
   const publications = readPublications();
-  const publicationIndex = publications.findIndex((pub) => pub.filePath === filePath);
+  const publicationIndex = publications.findIndex(
+    (pub) => pub.filePath === filePath
+  );
 
   if (publicationIndex === -1) {
     return null; // Journal not found
@@ -69,6 +75,3 @@ module.exports = {
   updateJournalStatus,
   getPendingJournals,
 };
-
-
-

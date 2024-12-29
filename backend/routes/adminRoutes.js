@@ -8,11 +8,17 @@ const publicationsFilePath = path.join(__dirname, "../publications.json");
 // Get all pending journals
 router.get("/pending", (req, res) => {
   try {
-    const publications = JSON.parse(fs.readFileSync(publicationsFilePath, "utf8"));
-    const pendingJournals = publications.filter((journal) => journal.status === "pending");
+    const publications = JSON.parse(
+      fs.readFileSync(publicationsFilePath, "utf8")
+    );
+    const pendingJournals = publications.filter(
+      (journal) => journal.status === "pending"
+    );
 
     if (pendingJournals.length === 0) {
-      return res.status(200).json({ message: "No pending journals to review." });
+      return res
+        .status(200)
+        .json({ message: "No pending journals to review." });
     }
 
     res.status(200).json(pendingJournals);
@@ -27,15 +33,22 @@ router.put("/approve", (req, res) => {
   const { filePath } = req.body;
 
   try {
-    const publications = JSON.parse(fs.readFileSync(publicationsFilePath, "utf8"));
-    const journalIndex = publications.findIndex((journal) => journal.filePath === filePath);
+    const publications = JSON.parse(
+      fs.readFileSync(publicationsFilePath, "utf8")
+    );
+    const journalIndex = publications.findIndex(
+      (journal) => journal.filePath === filePath
+    );
 
     if (journalIndex === -1) {
       return res.status(404).json({ message: "Journal not found." });
     }
 
     publications[journalIndex].status = "approved"; // Update status
-    fs.writeFileSync(publicationsFilePath, JSON.stringify(publications, null, 2));
+    fs.writeFileSync(
+      publicationsFilePath,
+      JSON.stringify(publications, null, 2)
+    );
 
     res.status(200).json({ message: "Journal approved successfully." });
   } catch (error) {
@@ -50,21 +63,22 @@ router.put("/reject/:id", (req, res) => {
   const { feedback } = req.body; // Get feedback from request body
 
   try {
-    const publications = JSON.parse(fs.readFileSync(publicationsFilePath, "utf8"));
-    const journalIndex = publications.findIndex((journal) => journal._id === id);
+    const publications = JSON.parse(
+      fs.readFileSync(publicationsFilePath, "utf8")
+    );
+    const journalIndex = publications.findIndex(
+      (journal) => journal.filePath === filePath
+    );
 
     if (journalIndex === -1) {
       return res.status(404).json({ message: "Journal not found." });
     }
 
-    // Update journal status and add feedback
-    publications[journalIndex].status = "rejected";
-    if (feedback) {
-      publications[journalIndex].feedback = feedback;  // Save feedback
-    }
-
-    // Write updated publications back to the file
-    fs.writeFileSync(publicationsFilePath, JSON.stringify(publications, null, 2));
+    publications[journalIndex].status = "rejected"; // Update status
+    fs.writeFileSync(
+      publicationsFilePath,
+      JSON.stringify(publications, null, 2)
+    );
 
     // Optional: Send rejection email (If needed)
     // Assuming you want to send an email when the journal is rejected.

@@ -1,31 +1,86 @@
-import React from 'react';
-import './SignupForm.css';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import "./SignupForm.css";
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    mobile: "",
+    password: "",
+    terms: false,
+  });
+  const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validate form data
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.mobile ||
+      !formData.password
+    ) {
+      setError("Please fill out all fields and agree to the terms");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: formData.name,
+          email: formData.email,
+          mobile_no: formData.mobile,
+          password: formData.password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Redirect on success
+        navigate("/SignInForm");
+      } else {
+        setError(data.message || "Something went wrong, please try again");
+      }
+    } catch (error) {
+      setError("Error during registration: " + error.message);
+    }
+  };
+
   return (
     <div className="signup-container">
-      <div className="background"></div>
-
       {/* Back Button */}
-      <button
-        className="back-button"
-        onClick={() => navigate(-1)} // Navigate to the previous page
-      >
+      <button className="back-button" onClick={() => navigate(-1)}>
         &larr; Back
       </button>
 
       <div className="form-container">
         <h1 className="form-title">Sign up</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="firstName">First Name</label>
+            <label htmlFor="name">First Name</label>
             <input
               type="text"
-              id="firstName"
-              name="firstName"
+              id="name"
+              name="name"
               placeholder="Enter your name"
+              value={formData.name}
+              onChange={handleInputChange}
               required
             />
           </div>
@@ -36,6 +91,8 @@ const SignupForm = () => {
               id="email"
               name="email"
               placeholder="example@gmail.com"
+              value={formData.email}
+              onChange={handleInputChange}
               required
             />
           </div>
@@ -46,9 +103,11 @@ const SignupForm = () => {
               id="mobile"
               name="mobile"
               placeholder="1234567890"
-              maxLength="15" // Limit the maximum length
-              pattern="[0-9]+" // Allow only numeric values
+              maxLength="15"
+              pattern="[0-9]+"
               title="Please enter a valid mobile number with digits only"
+              value={formData.mobile}
+              onChange={handleInputChange}
               required
             />
           </div>
@@ -59,26 +118,18 @@ const SignupForm = () => {
               id="password"
               name="password"
               placeholder="********"
+              value={formData.password}
+              onChange={handleInputChange}
               required
             />
           </div>
-          <div className="form-group checkbox-group">
-            <input
-              type="checkbox"
-              id="terms"
-              name="terms"
-              required
-            />
-            <label htmlFor="terms">
-              I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
-            </label>
-          </div>
+          {error && <p className="error-message">{error}</p>}
           <button type="submit" className="submit-button">
             Create an Account
           </button>
         </form>
         <p className="signup-prompt">
-          Already have an account?{' '}
+          Already have an account?{" "}
           <a href="/SignInForm" className="signin-link">
             Sign in
           </a>
@@ -89,4 +140,3 @@ const SignupForm = () => {
 };
 
 export default SignupForm;
-

@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { createPublication, getAllPublications } = require("../controllers/publicationController");
+const {
+  createPublication,
+  getAllPublications,
+} = require("../controllers/publicationController");
 
 // POST /api/publications - Create a new publication
 router.post("/", createPublication);
@@ -9,5 +12,3 @@ router.post("/", createPublication);
 router.get("/", getAllPublications);
 
 module.exports = router;
-
-
