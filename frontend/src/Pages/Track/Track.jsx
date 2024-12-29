@@ -1,67 +1,57 @@
-import React from 'react';
-import './Track.css';
-import NavBar from '../../components/NavBar/NavBar';
-import Footer from '../../components/Footer/Footer';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./Track.css"; // Ensure this import remains as it links the updated CSS
+import NavBar from "../../components/NavBar/NavBar";
 
 const Track = () => {
-  // Example user data
-  const user = {
-    name: 'John Doe',
-    email: 'johndoe@example.com',
-    lastLogin: '2024-12-19 10:00 AM',
-  };
+  const [journals, setJournals] = useState([]);
+  const [error, setError] = useState(null);
 
-  const journals = [
-    {
-      id: 1,
-      title: 'AI in Modern Healthcare',
-      status: 'On Progress',
-      remarks: '',
-    },
-    {
-      id: 2,
-      title: 'Blockchain for Data Security',
-      status: 'Returned',
-      remarks: 'Please add more references in the bibliography.',
-    },
-    {
-      id: 3,
-      title: 'Advances in Quantum Computing',
-      status: 'Submitted',
-      remarks: '',
-    },
-  ];
+  // Fetch published journals
+  useEffect(() => {
+    const fetchJournals = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/journals/published");  // Check if this endpoint is correct
+        setJournals(response.data);
+      } catch (err) {
+        console.error("Error fetching journals:", err);
+        setError("Failed to load journals. Please try again later.");
+      }
+    };
+
+    fetchJournals();
+  }, []);
 
   return (
     <div>
-      <div>
-        <NavBar/>
-    <div className="track-container">
-      <div className="user-info">
-        <h3>Welcome, {user.name}</h3>
-        <p>Email: {user.email}</p>
-        <p>Last Login: {user.lastLogin}</p>
-      </div>
-      <h2>Track Your Journals</h2>
-      <div className="track-card">
-        {journals.map((journal) => (
-          <div className="journal-card" key={journal.id}>
-            <div className="journal-header">
-              <h3>{journal.title}</h3>
-              <span className={`status ${journal.status.replace(' ', '-').toLowerCase()}`}>
-                {journal.status}
-              </span>
-            </div>
-            <div className="journal-body">
-              <p>
-                <strong>Remarks:</strong> {journal.remarks || 'N/A'}
-              </p>
-            </div>
+      <NavBar />
+      <div className="track-container">
+        <h1>Track Your Research</h1>
+        
+        {/* Display Error if any */}
+        {error && <p className="error">{error}</p>}
+
+        {/* Display journals if any */}
+        {journals.length === 0 ? (
+          <div className="no-journals">
+            <p>No journals to display.</p>
           </div>
-        ))}
+        ) : (
+          <div className="journal-cards">
+            {journals.map((journal) => (
+              <div className="journal-card" key={journal._id}>
+                <h3>{journal.journalName}</h3>
+                <p><strong>Status:</strong> {journal.status}</p>
+
+                {/* If the journal was rejected, show feedback */}
+                {journal.status === "rejected" && journal.feedback && (
+                  <p className="feedback"><strong>Feedback:</strong> {journal.feedback}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-    </div>
-    </div>
     </div>
   );
 };

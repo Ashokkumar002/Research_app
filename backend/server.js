@@ -17,6 +17,11 @@ app.use(cors());
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 
+const trackRoutes = require("./routes/trackRoutes");
+app.use("/api/journals", trackRoutes);
+
+// Example of how the backend endpoint should be set up
+
 // Ensure the 'uploads' directory exists for file storage
 const uploadDir = path.join(__dirname, "uploads");
 if (!fs.existsSync(uploadDir)) {

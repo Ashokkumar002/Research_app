@@ -57,9 +57,10 @@ router.put("/approve", (req, res) => {
   }
 });
 
-// Reject journal
-router.put("/reject", (req, res) => {
-  const { filePath } = req.body;
+// Reject journal and send feedback
+router.put("/reject/:id", (req, res) => {
+  const { id } = req.params;
+  const { feedback } = req.body; // Get feedback from request body
 
   try {
     const publications = JSON.parse(
@@ -79,11 +80,44 @@ router.put("/reject", (req, res) => {
       JSON.stringify(publications, null, 2)
     );
 
+    // Optional: Send rejection email (If needed)
+    // Assuming you want to send an email when the journal is rejected.
+    //const publisherEmail = publications[journalIndex].publisherEmail;
+    //sendRejectionEmail(publisherEmail, feedback);
+
     res.status(200).json({ message: "Journal rejected successfully." });
   } catch (error) {
     console.error("Error rejecting journal:", error);
-    res.status(500).json({ message: "Failed to reject journal." });
+    res.status(500).json({ message: "Error rejecting journal." });
   }
 });
+
+// Function to send rejection email (example with nodemailer)
+const sendRejectionEmail = (publisherEmail, feedback) => {
+  const nodemailer = require("nodemailer");
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_USER, // Your email address
+      pass: process.env.EMAIL_PASSWORD // Your email password
+    }
+  });
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: publisherEmail,
+    subject: "Your Journal Submission - Rejected",
+    text: `Your journal submission has been rejected. Here is the feedback from the admin: \n\n${feedback}`
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log("Error sending email:", error);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+};
 
 module.exports = router;
