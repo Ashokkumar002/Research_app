@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';  // Import useContext here
 import './Publish.css';
 import NavBar from '../../components/NavBar/NavBar';
+import { UserContext } from "../../context/userContext";  // Import the UserContext
 import Footer from '../../components/Footer/Footer';
 
 const Publish = () => {
+  const { user } = useContext(UserContext);  // Use useContext to get user from UserContext
   const [formData, setFormData] = useState({
     title: '',
     authors: '',
@@ -41,11 +43,14 @@ const Publish = () => {
     }
 
     const formDataToSend = new FormData();
+    formDataToSend.append('user_id', user.id);
     formDataToSend.append('title', formData.title);
     formDataToSend.append('authors', formData.authors.split(',').map((author) => author.trim())); // Convert to array
     formDataToSend.append('journalName', formData.journalName);
     formDataToSend.append('abstract', formData.abstract);
-    formDataToSend.append('file', formData.file); // Append the file
+    formDataToSend.append('file', formData.file);
+      
+    // Append the file
 
     try {
       const response = await fetch('http://localhost:5000/api/publications', {
@@ -139,5 +144,3 @@ const Publish = () => {
 };
 
 export default Publish;
-
-

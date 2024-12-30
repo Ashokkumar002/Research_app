@@ -92,3 +92,40 @@ h1 {
   color: #e74c3c;
   font-weight: bold;
 }
+.journal-card {
+  border: 1px solid #ddd;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.journal-card:hover {
+  transform: translateY(-5px);
+}
+
+.journal-card.approved {
+  background-color: #e6f7e6; /* Light green */
+  border-left: 5px solid #28a745; /* Green border */
+}
+
+.journal-card.rejected {
+  background-color: #fbeaea; /* Light red */
+  border-left: 5px solid #dc3545; /* Red border */
+}
+
+.journal-card.pending {
+  background-color: #fff8e1; /* Light yellow */
+  border-left: 5px solid #ffc107; /* Yellow border */
+}
+
+.error {
+  color: #dc3545; /* Red text */
+  font-weight: bold;
+}
+
+.feedback {
+  color: #6c757d; /* Grey text */
+}
+

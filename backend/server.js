@@ -68,7 +68,7 @@ app.use("/api/admin", adminRoutes);
 
 // Route to handle submitting a journal (with file upload)
 app.post("/api/publications", upload.single("file"), (req, res) => {
-  const { title, authors, journalName, abstract } = req.body;
+  const { user_id,title, authors, journalName, abstract } = req.body;
   const journalFile = req.file; // The uploaded file
 
   if (!journalFile) {
@@ -77,13 +77,16 @@ app.post("/api/publications", upload.single("file"), (req, res) => {
 
   // Prepare the new publication data with a 'pending' status
   const newPublication = {
-    _id: uuidv4(), // Generate a unique ID for the publication
+    _id: uuidv4(),
+    user_id, // Generate a unique ID for the publication
     title,
     authors: authors.split(",").map((author) => author.trim()), // Split comma-separated authors
     journalName,
     abstract,
     filePath: journalFile.path, // Save the file path
     status: "pending", // Initially set status to 'pending'
+    publicationDate: null, // Initially set to null, will be updated on approval
+    statusUpdatedAt: new Date().toISOString(), // Set the status update date to current time
   };
 
   // Save the publication data (in this case, to a JSON file)
@@ -135,6 +138,13 @@ app.put("/api/admin/publications/:id", (req, res) => {
 
   // Update the publication status
   publications[publicationIndex].status = status;
+  publications[publicationIndex].statusUpdatedAt = new Date().toISOString(); // Update status update date
+
+  // If the status is approved and the publication date is not yet set, set it
+  if (status === "approved" && !publications[publicationIndex].publicationDate) {
+    publications[publicationIndex].publicationDate = new Date().toISOString(); // Set publication date when approved
+  }
+
   fs.writeFileSync(publicationsFilePath, JSON.stringify(publications, null, 2));
 
   return res.status(200).json({ message: `Journal has been ${status}.` });

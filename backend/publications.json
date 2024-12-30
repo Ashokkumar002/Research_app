@@ -1,130 +1,148 @@
 [
   {
-    "title": "test 1",
+    "_id": "e45f30c2-9081-4506-b376-0d5622b32154",
+    "title": "sample",
+    "authors": [
+      "sample"
+    ],
+    "journalName": "sample",
+    "abstract": "sample",
+    "filePath": "uploads\\1735575074974-Fees Receipt.pdf",
+    "status": "approved"
+  },
+  {
+    "_id": "b4bf44d6-59b9-44c9-8792-b495c472d172",
+    "title": "sathish publication",
+    "authors": [
+      "summa"
+    ],
+    "journalName": "gdhgsdjsk",
+    "abstract": "gsthujat",
+    "filePath": "uploads\\1735575527225-Fees Receipt.pdf",
+    "status": "rejected",
+    "feedback": "sample"
+  },
+  {
+    "_id": "434fd4d7-f617-4886-8802-8315362474d9",
+    "title": "summa",
+    "authors": [
+      "suamma"
+    ],
+    "journalName": "summa",
+    "abstract": "summa",
+    "filePath": "uploads\\1735577434641-Fees Receipt.pdf",
+    "status": "rejected",
+    "feedback": "rejected"
+  },
+  {
+    "_id": "b611ec85-ecdd-490e-8c27-d1a93886c23d",
+    "title": "sample 1",
+    "authors": [
+      "sample 2"
+    ],
+    "journalName": "sample 3",
+    "abstract": "sample",
+    "filePath": "uploads\\1735578052366-Fees Receipt.pdf",
+    "status": "approved",
+    "publicationDate": null,
+    "statusUpdatedAt": "2024-12-30T17:00:52.381Z"
+  },
+  {
+    "_id": "f13c8fbc-15c2-4743-8d8e-5d06fe231abb",
+    "title": "summa",
     "authors": [
       "yogan"
-    ],
-    "journalName": "sample test 1",
-    "abstract": "sample test abstract 1",
-    "filePath": "uploads\\1735198994980-Airquality-EDA.pdf"
-  },
-  {
-    "title": "sample test 2",
-    "authors": [
-      "yogan"
-    ],
-    "journalName": "sample test 2",
-    "abstract": "sample test 2",
-    "filePath": "uploads\\1735199151191-Yogannasamy N_Resume.docx"
-  },
-  {
-    "title": "sample test 3",
-    "authors": [
-      "sample author"
-    ],
-    "journalName": "sample test 3",
-    "abstract": "sample abstract 3",
-    "filePath": "uploads\\1735200218151-Fees Receipt.pdf"
-  },
-  {
-    "title": "sample test 4",
-    "authors": [
-      "sample author 1"
-    ],
-    "journalName": "sample test 4",
-    "abstract": "sample abstract",
-    "filePath": "uploads\\1735200676055-android 1.pdf",
-    "status": "pending"
-  },
-  {
-    "title": "sample test 5",
-    "authors": [
-      "sample author"
-    ],
-    "journalName": "sample test 5",
-    "abstract": "gahajskjx",
-    "filePath": "uploads\\1735200812953-android 1.pdf",
-    "status": "pending"
-  },
-  {
-    "title": "sample test 6",
-    "authors": [
-      "sample author"
-    ],
-    "journalName": "sample test 6",
-    "abstract": "hhjjsfshds",
-    "filePath": "uploads\\1735200875358-android Record.pdf",
-    "status": "pending"
-  },
-  {
-    "title": "sample test 6",
-    "authors": [
-      "sample author"
-    ],
-    "journalName": "sample test 6",
-    "abstract": "gahstys",
-    "filePath": "uploads\\1735200995722-android.pdf",
-    "status": "pending"
-  },
-  {
-    "title": "sample test 7",
-    "authors": [
-      "sample author"
-    ],
-    "journalName": "sample test 7",
-    "abstract": "sample abstract to submit",
-    "filePath": "uploads\\1735201235140-BC-1.pdf",
-    "status": "pending"
-  },
-  {
-    "title": "sample test 7",
-    "authors": [
-      "sample author"
-    ],
-    "journalName": "sample test 7",
-    "abstract": "sample abstartct",
-    "filePath": "uploads\\1735201490580-BC-2.pdf",
-    "status": "pending"
-  },
-  {
-    "title": "sample test 8",
-    "authors": [
-      "jofin"
-    ],
-    "journalName": "sample test 8",
-    "abstract": "sample abstract",
-    "filePath": "uploads\\1735278824121-android.pdf",
-    "status": "pending"
-  },
-  {
-    "title": "sample test 9",
-    "authors": [
-      "jofin"
-    ],
-    "journalName": "sample test 9",
-    "abstract": "sample abstarct test",
-    "filePath": "uploads\\1735284050141-android 1.pdf",
-    "status": "pending"
-  },
-  {
-    "title": "sample test 10",
-    "authors": [
-      "sample author"
     ],
     "journalName": "sample journal",
-    "abstract": "sample abstarct",
-    "filePath": "uploads\\1735287022080-BC-1.pdf",
-    "status": "pending"
+    "abstract": "sample abstract",
+    "filePath": "uploads\\1735578122121-Fees Receipt.pdf",
+    "status": "rejected",
+    "publicationDate": null,
+    "statusUpdatedAt": "2024-12-30T17:02:02.131Z",
+    "feedback": "summa "
   },
   {
-    "_id": "c0b6f04a-dee7-4e13-be39-7cc60f813510",
-    "title": "sample 11",
+    "_id": "4e2e4705-d684-41a2-9953-1a85fdc7ba6f",
+    "title": "sa,",
     "authors": [
-      "karan"
+      "hdjs"
     ],
-    "journalName": "karan journal",
+    "journalName": "gxchjgc",
+    "abstract": "hjhgsgdkgjs",
+    "filePath": "uploads\\1735578301394-Fees Receipt.pdf",
+    "status": "rejected",
+    "publicationDate": null,
+    "statusUpdatedAt": "2024-12-30T17:05:01.403Z",
+    "feedback": "gshshs"
+  },
+  {
+    "_id": "5e2fd0b6-0546-446f-9967-c40f11e17956",
+    "title": "sample",
+    "authors": [
+      "sample"
+    ],
+    "journalName": "summa",
+    "abstract": "shsjsj",
+    "filePath": "uploads\\1735579123776-Fees Receipt.pdf",
+    "status": "approved",
+    "publicationDate": "2024-12-30T17:44:02.091Z",
+    "statusUpdatedAt": "2024-12-30T17:44:02.091Z"
+  },
+  {
+    "_id": "1b61bd88-2dd1-42d4-a4d0-c982c9252bde",
+    "user_id": "10000",
+    "title": "sample",
+    "authors": [
+      "sample"
+    ],
+    "journalName": "summa",
+    "abstract": "hjsjjdd",
+    "filePath": "uploads\\1735579566274-ICG_Preview.pdf",
+    "status": "approved",
+    "publicationDate": "2024-12-30T17:44:24.153Z",
+    "statusUpdatedAt": "2024-12-30T17:44:24.153Z"
+  },
+  {
+    "_id": "9da39c94-dfc2-4159-9f2a-b70ea0ca3d3b",
+    "user_id": "10003",
+    "title": "sample",
+    "authors": [
+      "sample"
+    ],
+    "journalName": "ssample",
     "abstract": "sample",
-    "filePath": "uploads\\1735294381180-android Record.pdf",
-    "status": "pending"
+    "filePath": "uploads\\1735580936823-Fees Receipt.pdf",
+    "status": "approved",
+    "publicationDate": "2024-12-30T17:56:12.151Z",
+    "statusUpdatedAt": "2024-12-30T17:56:12.151Z"
+  },
+  {
+    "_id": "7cf2e2a0-cda9-466b-b9c3-c1d325a7baf6",
+    "user_id": "10003",
+    "title": "sample",
+    "authors": [
+      "sample"
+    ],
+    "journalName": "ssample",
+    "abstract": "jhxhsgcshc",
+    "filePath": "uploads\\1735581131193-Fees Receipt.pdf",
+    "status": "rejected",
+    "publicationDate": null,
+    "statusUpdatedAt": "2024-12-30T17:52:11.200Z",
+    "feedback": "sample reject"
+  },
+  {
+    "_id": "7f8b87af-fbd6-4d40-bc88-8a4ee6885a8c",
+    "user_id": "10003",
+    "title": "yogan",
+    "authors": [
+      "yogan"
+    ],
+    "journalName": "cjhdcgshjfds",
+    "abstract": "hvgxasxfasn",
+    "filePath": "uploads\\1735581584065-Fees Receipt.pdf",
+    "status": "approved",
+    "publicationDate": "2024-12-30T18:00:22.429Z",
+    "statusUpdatedAt": "2024-12-30T18:00:22.429Z"
   }
 ]

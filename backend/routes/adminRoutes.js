@@ -32,6 +32,10 @@ router.get("/pending", (req, res) => {
 router.put("/approve", (req, res) => {
   const { filePath } = req.body;
 
+  if (!filePath) {
+    return res.status(400).json({ message: "filePath is required." });
+  }
+
   try {
     const publications = JSON.parse(
       fs.readFileSync(publicationsFilePath, "utf8")
@@ -60,31 +64,31 @@ router.put("/approve", (req, res) => {
 // Reject journal and send feedback
 router.put("/reject/:id", (req, res) => {
   const { id } = req.params;
-  const { feedback } = req.body; // Get feedback from request body
+  const { feedback } = req.body;
+
+  console.log("Reject request received:");
+  console.log("ID:", id);
+  console.log("Feedback:", feedback);
 
   try {
-    const publications = JSON.parse(
-      fs.readFileSync(publicationsFilePath, "utf8")
-    );
-    const journalIndex = publications.findIndex(
-      (journal) => journal.filePath === filePath
-    );
+    const publications = JSON.parse(fs.readFileSync(publicationsFilePath, "utf8"));
+    const journalIndex = publications.findIndex((journal) => journal._id === id);
+
+    console.log("Publications found:", publications);
 
     if (journalIndex === -1) {
+      console.log("Journal not found.");
       return res.status(404).json({ message: "Journal not found." });
     }
 
-    publications[journalIndex].status = "rejected"; // Update status
-    fs.writeFileSync(
-      publicationsFilePath,
-      JSON.stringify(publications, null, 2)
-    );
+    publications[journalIndex].status = "rejected";
+    if (feedback) {
+      publications[journalIndex].feedback = feedback;
+    }
 
-    // Optional: Send rejection email (If needed)
-    // Assuming you want to send an email when the journal is rejected.
-    //const publisherEmail = publications[journalIndex].publisherEmail;
-    //sendRejectionEmail(publisherEmail, feedback);
+    fs.writeFileSync(publicationsFilePath, JSON.stringify(publications, null, 2));
 
+    console.log("Journal rejected successfully.");
     res.status(200).json({ message: "Journal rejected successfully." });
   } catch (error) {
     console.error("Error rejecting journal:", error);
@@ -92,32 +96,5 @@ router.put("/reject/:id", (req, res) => {
   }
 });
 
-// Function to send rejection email (example with nodemailer)
-const sendRejectionEmail = (publisherEmail, feedback) => {
-  const nodemailer = require("nodemailer");
-
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.EMAIL_USER, // Your email address
-      pass: process.env.EMAIL_PASSWORD // Your email password
-    }
-  });
-
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: publisherEmail,
-    subject: "Your Journal Submission - Rejected",
-    text: `Your journal submission has been rejected. Here is the feedback from the admin: \n\n${feedback}`
-  };
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log("Error sending email:", error);
-    } else {
-      console.log("Email sent: " + info.response);
-    }
-  });
-};
 
 module.exports = router;
