@@ -1,9 +1,18 @@
 // config/redis.js
 const Redis = require("ioredis");
-const redis = new Redis({
-  host: process.env.REDIS_HOST, // Redis server host
-  port: process.env.REDIS_PORT, // Redis server port
-  db: 0, // Choose the Redis DB to connect to (0 by default)
+
+// Use the Redis URL from the environment variable
+const redis = new Redis(process.env.REDIS_URL, {
+  db: 0, // Specify the Redis DB to use (default is 0)
+});
+
+// Handle connection events for logging and debugging
+redis.on("connect", () => {
+  console.log("Connected to Redis");
+});
+
+redis.on("error", (err) => {
+  console.error("Redis connection error:", err);
 });
 
 module.exports = redis;
