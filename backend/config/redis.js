@@ -1,14 +1,15 @@
-// config/redis.js
 const Redis = require("ioredis");
 
-// Use the Redis URL from the environment variable
-const redis = new Redis(process.env.REDIS_URL, {
-  db: 0, // Specify the Redis DB to use (default is 0)
+// Use the internal Redis URL
+const redisUrl =
+  process.env.REDIS_URL || "redis://red-ctposvjqf0us73edpd20:6379";
+
+const redis = new Redis(redisUrl, {
+  db: 0, // Default DB
 });
 
-// Handle connection events for logging and debugging
 redis.on("connect", () => {
-  console.log("Connected to Redis");
+  console.log("Connected to Redis successfully");
 });
 
 redis.on("error", (err) => {
