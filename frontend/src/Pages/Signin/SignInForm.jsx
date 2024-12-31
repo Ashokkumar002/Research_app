@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext"; // Adjust the path as necessary
 import "./SignInForm.css";
 
@@ -103,9 +103,9 @@ const SignInForm = () => {
         </form>
         <p className="signup-prompt">
           Don't have an account?{" "}
-          <a href="/SignUpForm" className="signup-link">
+          <Link to="/SignUpForm" className="signup-link">
             Sign up
-          </a>
+          </Link>
         </p>
       </div>
     </div>
