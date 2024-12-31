@@ -30,16 +30,19 @@ const SignInForm = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          credential: formData.email,
-          password: formData.password,
-        }),
-      });
+      const response = await fetch(
+        "https://automated-journal-finder.onrender.com/api/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            credential: formData.email,
+            password: formData.password,
+          }),
+        }
+      );
 
       const data = await response.json();
 

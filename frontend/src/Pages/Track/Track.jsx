@@ -2,10 +2,10 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import "./Track.css";
 import NavBar from "../../components/NavBar/NavBar";
-import { UserContext } from "../../context/userContext";  // Import UserContext
+import { UserContext } from "../../context/userContext"; // Import UserContext
 
 const Track = () => {
-  const { user } = useContext(UserContext);  // Get the user context
+  const { user } = useContext(UserContext); // Get the user context
   const [journals, setJournals] = useState([]);
   const [error, setError] = useState(null);
 
@@ -15,21 +15,23 @@ const Track = () => {
       setError("User not logged in.");
       return;
     }
-  
+
     const fetchJournals = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/journals/published?user_id=${user.id}`);
-        console.log("Fetched journals:", response.data);  // Log the response
+        const response = await axios.get(
+          `https://automated-journal-finder.onrender.com/api/journals/published?user_id=${user.id}`
+        );
+        console.log("Fetched journals:", response.data); // Log the response
         setJournals(response.data);
       } catch (err) {
         console.error("Error fetching journals:", err);
         setError("Failed to load journals. Please try again later.");
       }
     };
-  
+
     fetchJournals();
   }, [user]);
-    // Dependency on user, to refetch when user changes
+  // Dependency on user, to refetch when user changes
 
   return (
     <div>
@@ -64,7 +66,6 @@ const Track = () => {
                 </p>
 
                 {/* Display Published Date */}
-                
 
                 {/* Display Status Approval Date */}
                 {journal.status === "approved" && journal.statusUpdatedAt && (

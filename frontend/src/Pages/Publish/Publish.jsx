@@ -1,21 +1,21 @@
-import React, { useState, useContext } from 'react';  // Import useContext here
-import './Publish.css';
-import NavBar from '../../components/NavBar/NavBar';
-import { UserContext } from "../../context/userContext";  // Import the UserContext
-import Footer from '../../components/Footer/Footer';
+import React, { useState, useContext } from "react"; // Import useContext here
+import "./Publish.css";
+import NavBar from "../../components/NavBar/NavBar";
+import { UserContext } from "../../context/userContext"; // Import the UserContext
+import Footer from "../../components/Footer/Footer";
 
 const Publish = () => {
-  const { user } = useContext(UserContext);  // Use useContext to get user from UserContext
+  const { user } = useContext(UserContext); // Use useContext to get user from UserContext
   const [formData, setFormData] = useState({
-    title: '',
-    authors: '',
-    journalName: '',
-    abstract: '',
+    title: "",
+    authors: "",
+    journalName: "",
+    abstract: "",
     file: null, // Added file field
   });
 
-  const [message, setMessage] = useState('');
-  const [error, setError] = useState('');
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -33,46 +33,52 @@ const Publish = () => {
     e.preventDefault();
 
     // Clear previous messages
-    setMessage('');
-    setError('');
+    setMessage("");
+    setError("");
 
     // Check if file is provided
     if (!formData.file) {
-      setError('Please upload a journal file.');
+      setError("Please upload a journal file.");
       return;
     }
 
     const formDataToSend = new FormData();
-    formDataToSend.append('user_id', user.id);
-    formDataToSend.append('title', formData.title);
-    formDataToSend.append('authors', formData.authors.split(',').map((author) => author.trim())); // Convert to array
-    formDataToSend.append('journalName', formData.journalName);
-    formDataToSend.append('abstract', formData.abstract);
-    formDataToSend.append('file', formData.file);
-      
+    formDataToSend.append("user_id", user.id);
+    formDataToSend.append("title", formData.title);
+    formDataToSend.append(
+      "authors",
+      formData.authors.split(",").map((author) => author.trim())
+    ); // Convert to array
+    formDataToSend.append("journalName", formData.journalName);
+    formDataToSend.append("abstract", formData.abstract);
+    formDataToSend.append("file", formData.file);
+
     // Append the file
 
     try {
-      const response = await fetch('http://localhost:5000/api/publications', {
-        method: 'POST',
-        body: formDataToSend,
-      });
+      const response = await fetch(
+        "https://automated-journal-finder.onrender.com/api/publications",
+        {
+          method: "POST",
+          body: formDataToSend,
+        }
+      );
 
       if (!response.ok) {
-        throw new Error('Failed to publish the journal. Please try again.');
+        throw new Error("Failed to publish the journal. Please try again.");
       }
 
       const data = await response.json();
-      setMessage('Journal is submitted for publication');
+      setMessage("Journal is submitted for publication");
       setFormData({
-        title: '',
-        authors: '',
-        journalName: '',
-        abstract: '',
+        title: "",
+        authors: "",
+        journalName: "",
+        abstract: "",
         file: null,
       });
     } catch (err) {
-      setError(err.message || 'An error occurred. Please try again.');
+      setError(err.message || "An error occurred. Please try again.");
     }
   };
 

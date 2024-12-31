@@ -11,9 +11,12 @@ const UserProvider = ({ children }) => {
       const token = localStorage.getItem("token");
       if (token) {
         // Verify the token with the backend
-        const response = await axios.get("http://localhost:5000/api/users/me", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await axios.get(
+          "https://automated-journal-finder.onrender.com/api/users/me",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
         console.log(response.data);
         setUser(response.data); // Assume the backend sends back user details
       }

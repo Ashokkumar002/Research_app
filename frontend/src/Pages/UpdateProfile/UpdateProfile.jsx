@@ -23,7 +23,7 @@ const UpdateProfile = () => {
       if (!token) throw new Error("User is not authenticated");
 
       const response = await axios.put(
-        "http://localhost:5000/api/users/update-profile",
+        "https://automated-journal-finder.onrender.com/api/users/update-profile",
         { username, email, mobile_no: mobileNo },
         {
           headers: {

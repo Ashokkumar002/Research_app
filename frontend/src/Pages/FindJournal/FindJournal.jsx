@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import './FindJournal.css';
-import NavBar from '../../components/NavBar/NavBar';
-import Footer from '../../components/Footer/Footer';
+import React, { useState } from "react";
+import "./FindJournal.css";
+import NavBar from "../../components/NavBar/NavBar";
+import Footer from "../../components/Footer/Footer";
 
 const FindJournal = () => {
-  const [searchType, setSearchType] = useState('keyword'); // Default search type
-  const [inputValue, setInputValue] = useState('');
+  const [searchType, setSearchType] = useState("keyword"); // Default search type
+  const [inputValue, setInputValue] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -13,7 +13,7 @@ const FindJournal = () => {
   // Handle search type switch (keyword/abstract)
   const handleSearchTypeChange = (event) => {
     setSearchType(event.target.value);
-    setInputValue(''); // Clear the input when switching search type
+    setInputValue(""); // Clear the input when switching search type
     setResults([]); // Clear previous results
     setError(null); // Clear errors
   };
@@ -26,7 +26,7 @@ const FindJournal = () => {
   // Perform the search by calling the backend
   const handleSearch = async () => {
     if (!inputValue.trim()) {
-      alert('Please enter a value to search.');
+      alert("Please enter a value to search.");
       return;
     }
 
@@ -36,19 +36,24 @@ const FindJournal = () => {
 
     try {
       // Send request to the backend (not directly to CrossRef)
-      const queryParams = searchType === 'keyword' ? { keyword: inputValue } : { abstract: inputValue };
+      const queryParams =
+        searchType === "keyword"
+          ? { keyword: inputValue }
+          : { abstract: inputValue };
       const response = await fetch(
-      `http://localhost:5000/api/journals/search?query=${encodeURIComponent(inputValue)}`
-    );
+        `https://automated-journal-finder.onrender.com/api/journals/search?query=${encodeURIComponent(
+          inputValue
+        )}`
+      );
 
       if (!response.ok) {
-        throw new Error('Failed to fetch journals. Please try again.');
+        throw new Error("Failed to fetch journals. Please try again.");
       }
 
       const data = await response.json();
 
       if (data.length === 0) {
-        setError('No results found. Try another search.');
+        setError("No results found. Try another search.");
       } else {
         setResults(data); // Store the search results
       }
@@ -71,7 +76,7 @@ const FindJournal = () => {
             <input
               type="radio"
               value="keyword"
-              checked={searchType === 'keyword'}
+              checked={searchType === "keyword"}
               onChange={handleSearchTypeChange}
               className="radio-button"
             />
@@ -81,7 +86,7 @@ const FindJournal = () => {
             <input
               type="radio"
               value="abstract"
-              checked={searchType === 'abstract'}
+              checked={searchType === "abstract"}
               onChange={handleSearchTypeChange}
               className="radio-button"
             />
@@ -91,7 +96,7 @@ const FindJournal = () => {
 
         {/* Input Field */}
         <div className="input-container">
-          {searchType === 'keyword' ? (
+          {searchType === "keyword" ? (
             <input
               type="text"
               placeholder="Enter keyword..."
@@ -111,7 +116,7 @@ const FindJournal = () => {
 
         {/* Search Button */}
         <button onClick={handleSearch} className="search-button">
-          {loading ? 'Searching...' : 'Search'}
+          {loading ? "Searching..." : "Search"}
         </button>
 
         {/* Error Message */}
@@ -119,39 +124,38 @@ const FindJournal = () => {
 
         {/* Results Section */}
         <div className="results-container">
-  {results.length > 0 && (
-    <div className="cards-container">
-      {results.map((journal, index) => (
-        <div key={index} className="journal-card">
-          <h3 className="card-title">{journal.title}</h3>
-          <p className="card-authors">
-            <strong>Authors:</strong> {journal.authors || 'Unknown'}
-          </p>
+          {results.length > 0 && (
+            <div className="cards-container">
+              {results.map((journal, index) => (
+                <div key={index} className="journal-card">
+                  <h3 className="card-title">{journal.title}</h3>
+                  <p className="card-authors">
+                    <strong>Authors:</strong> {journal.authors || "Unknown"}
+                  </p>
 
-          {/* Abstract with HTML formatting */}
-          <div className="card-abstract" dangerouslySetInnerHTML={{ __html: journal.abstract }}></div>
+                  {/* Abstract with HTML formatting */}
+                  <div
+                    className="card-abstract"
+                    dangerouslySetInnerHTML={{ __html: journal.abstract }}
+                  ></div>
 
-          {/* Displaying the link */}
-          <a
-            href={journal.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="card-link"
-          >
-            Read More
-          </a>
+                  {/* Displaying the link */}
+                  <a
+                    href={journal.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="card-link"
+                  >
+                    Read More
+                  </a>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-      ))}
-    </div>
-  )}
-</div>
-
-
       </div>
     </div>
   );
 };
 
 export default FindJournal;
-
-

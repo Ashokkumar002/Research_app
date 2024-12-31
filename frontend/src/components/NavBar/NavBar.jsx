@@ -21,7 +21,7 @@ const NavBar = () => {
         if (!token) throw new Error("Authentication token not found");
 
         const response = await axios.delete(
-          `http://localhost:5000/api/users/${user.id}`,
+          `https://automated-journal-finder.onrender.com/api/users/${user.id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

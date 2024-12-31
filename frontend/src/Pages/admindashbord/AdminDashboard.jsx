@@ -13,7 +13,9 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchPendingJournals = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/admin/publications");
+        const response = await axios.get(
+          "https://automated-journal-finder.onrender.com/api/admin/publications"
+        );
         if (response.data.message) {
           setError(response.data.message); // Handle "No pending journals"
         } else {
@@ -31,11 +33,11 @@ const AdminDashboard = () => {
   const approveJournal = async (id) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/admin/publications/${id}`,
+        `https://automated-journal-finder.onrender.com/api/admin/publications/${id}`,
         { status: "approved" }
       );
-      setPendingJournals(prevJournals =>
-        prevJournals.filter(journal => journal._id !== id)
+      setPendingJournals((prevJournals) =>
+        prevJournals.filter((journal) => journal._id !== id)
       );
     } catch (error) {
       setError("Failed to approve journal.");
@@ -44,14 +46,17 @@ const AdminDashboard = () => {
 
   const rejectJournal = async (id, feedback) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/admin/reject/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ feedback }),
-      });
-  
+      const response = await fetch(
+        `https://automated-journal-finder.onrender.com/api/admin/reject/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ feedback }),
+        }
+      );
+
       const data = await response.json();
       if (response.ok) {
         alert("Journal rejected successfully.");
@@ -70,9 +75,6 @@ const AdminDashboard = () => {
       alert("Feedback is required to reject a journal.");
     }
   };
-  
-  
-  
 
   const handleFeedbackChange = (e) => {
     setFeedback(e.target.value);
@@ -91,7 +93,9 @@ const AdminDashboard = () => {
 
   return (
     <div>
-      <div className="admin"><h1>Admin Dashboard</h1></div>
+      <div className="admin">
+        <h1>Admin Dashboard</h1>
+      </div>
 
       {error && <p>{error}</p>}
 
@@ -104,16 +108,30 @@ const AdminDashboard = () => {
           {pendingJournals.map((journal) => (
             <li key={journal._id}>
               <h3>{journal.title}</h3>
-              <p><strong>Authors:</strong> {journal.authors.join(", ")}</p>
-              <p><strong>Abstract:</strong> {journal.abstract}</p>
-              <p><strong>Journal Name:</strong> {journal.journalName}</p>
-              <a href={`http://localhost:5000/${journal.filePath}`} target="_blank" rel="noopener noreferrer">
+              <p>
+                <strong>Authors:</strong> {journal.authors.join(", ")}
+              </p>
+              <p>
+                <strong>Abstract:</strong> {journal.abstract}
+              </p>
+              <p>
+                <strong>Journal Name:</strong> {journal.journalName}
+              </p>
+              <a
+                href={`https://automated-journal-finder.onrender.com/${journal.filePath}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Open File
               </a>
               <div>
-                <button onClick={() => approveJournal(journal._id)}>Approve</button>
+                <button onClick={() => approveJournal(journal._id)}>
+                  Approve
+                </button>
                 {/* Reject Button */}
-                <button onClick={() => handleReject(journal._id)}>Reject</button>
+                <button onClick={() => handleReject(journal._id)}>
+                  Reject
+                </button>
               </div>
 
               {/* Conditionally show feedback section if journal has been rejected */}
